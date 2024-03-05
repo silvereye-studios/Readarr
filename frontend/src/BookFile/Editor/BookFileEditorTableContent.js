@@ -99,6 +99,7 @@ class BookFileEditorTableContent extends Component {
       items,
       qualities,
       dispatchDeleteBookFile,
+      dispatchDownloadBookFile,
       ...otherProps
     } = this.props;
 
@@ -164,6 +165,7 @@ class BookFileEditorTableContent extends Component {
                           {...item}
                           onSelectedChange={this.onSelectedChange}
                           deleteBookFile={dispatchDeleteBookFile}
+                          downloadBookFile={dispatchDownloadBookFile}
                         />
                       );
                     })
@@ -222,7 +224,8 @@ BookFileEditorTableContent.propTypes = {
   qualities: PropTypes.arrayOf(PropTypes.object).isRequired,
   onDeletePress: PropTypes.func.isRequired,
   onQualityChange: PropTypes.func.isRequired,
-  dispatchDeleteBookFile: PropTypes.func.isRequired
+  dispatchDeleteBookFile: PropTypes.func.isRequired,
+  dispatchDownloadBookFile: PropTypes.func.isRequired
 };
 
 export default BookFileEditorTableContent;
