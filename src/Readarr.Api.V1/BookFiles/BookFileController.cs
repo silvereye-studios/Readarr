@@ -3,6 +3,8 @@ using System.IO;
 using System.IO.Abstractions;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
+using NzbDrone.Common.Extensions;
 using NzbDrone.Core.Books;
 using NzbDrone.Core.Datastore.Events;
 using NzbDrone.Core.DecisionEngine.Specifications;
@@ -30,6 +32,7 @@ namespace Readarr.Api.V1.BookFiles
         private readonly IAuthorService _authorService;
         private readonly IBookService _bookService;
         private readonly IUpgradableSpecification _upgradableSpecification;
+        private readonly IContentTypeProvider _mimeTypeProvider;
 
         public BookFileController(IBroadcastSignalRMessage signalRBroadcaster,
                                IMediaFileService mediaFileService,
@@ -46,6 +49,7 @@ namespace Readarr.Api.V1.BookFiles
             _authorService = authorService;
             _bookService = bookService;
             _upgradableSpecification = upgradableSpecification;
+            _mimeTypeProvider = new FileExtensionContentTypeProvider();
         }
 
         private BookFileResource MapToResource(BookFile bookFile)
@@ -105,6 +109,22 @@ namespace Readarr.Api.V1.BookFiles
                 // trackfiles will come back with the author already populated
                 var bookFiles = _mediaFileService.Get(bookFileIds);
                 return bookFiles.ConvertAll(e => MapToResource(e));
+            }
+        }
+
+        [HttpGet("download/{id:int}")]
+        public IActionResult GetBookFile(int id)
+        {
+            try
+            {
+                var bookFile = _mediaFileService.Get(id);
+                var filePath = bookFile.Path;
+                Response.Headers.Add("content-disposition", string.Format("attachment;filename={0}", PathExtensions.BaseName(filePath)));
+                return new PhysicalFileResult(filePath, GetContentType(filePath));
+            }
+            catch
+            {
+                throw new BadRequestException(string.Format("no bookfiles exist for id: {0}", id));
             }
         }
 
@@ -185,6 +205,36 @@ namespace Readarr.Api.V1.BookFiles
         public void Handle(BookFileDeletedEvent message)
         {
             BroadcastResourceChange(ModelAction.Deleted, MapToResource(message.BookFile));
+        }
+
+        private string GetContentType(string filePath)
+        {
+            if (!_mimeTypeProvider.TryGetContentType(filePath, out var contentType))
+            {
+                var ext = PathExtensions.GetPathExtension(filePath);
+                if (ext.Contains("epub"))
+                {
+                    contentType = "application/epub+zip";
+                }
+                else if (ext.Contains("azw"))
+                {
+                    contentType = "application/vnd.amazon.ebook";
+                }
+                else if (ext.Contains("azw"))
+                {
+                    contentType = "application/x-mobipocket-ebook";
+                }
+                else if (ext.Contains("pdf"))
+                {
+                    contentType = "application/pdf";
+                }
+                else
+                {
+                    contentType = "application/octet-stream";
+                }
+            }
+
+            return contentType;
         }
     }
 }
