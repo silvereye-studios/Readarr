@@ -6,12 +6,13 @@ interface CssExports {
   'customFormatScore': string;
   'download': string;
   'indexer': string;
+  'indexerFlags': string;
   'peers': string;
   'protocol': string;
   'quality': string;
   'rejected': string;
   'size': string;
-  'title': string;
+  'titleContent': string;
 }
 export const cssExports: CssExports;
 export default cssExports;
