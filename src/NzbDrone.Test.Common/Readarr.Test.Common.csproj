@@ -11,6 +11,7 @@
     <PackageReference Include="NUnit" />
     <PackageReference Include="RestSharp" />
     <PackageReference Include="RestSharp.Serializers.SystemTextJson" />
+    <PackageReference Include="SixLabors.ImageSharp" />
     <PackageReference Include="System.IO.Abstractions" />
     <PackageReference Include="System.IO.Abstractions.TestingHelpers" />
   </ItemGroup>

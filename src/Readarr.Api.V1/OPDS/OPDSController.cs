@@ -39,9 +39,25 @@ namespace Readarr.Api.V1.OPDS
 
         // /opds
         [HttpGet]
-        public OPDSCatalogResource GetOPDSCatalog()
+        public OPDSCatalogResource GetOPDSCatalog([FromQuery] PagingRequestResource paging)
         {
             var catalog = OPDSResourceMapper.ToOPDSCatalogResource();
+
+            var baseUrl = string.Format("{0}://{1}", Request.Scheme, Request.Host);
+
+            var pagingResource = new PagingResource<OPDSPublicationResource>(paging);
+            var pagingSpec = new PagingSpec<Book>
+            {
+                Page = pagingResource.Page,
+                PageSize = pagingResource.PageSize,
+                SortKey = pagingResource.SortKey,
+                SortDirection = pagingResource.SortDirection
+            };
+            pagingSpec = _bookService.BooksWithFiles(pagingSpec);
+
+            var publications = OPDSResourceMapper.ToOPDSPublicationsResource(pagingSpec.Page, pagingSpec.PageSize, pagingSpec.TotalRecords);
+            catalog.Publications = MapToResource(baseUrl, pagingSpec.Records);
+
             return catalog;
         }
 
@@ -58,9 +74,8 @@ namespace Readarr.Api.V1.OPDS
             return true;
         }
 
-        // /opds/publications/search
+        // /opds/search
         [HttpGet("search")]
-        [HttpGet("publications/search")]
         public OPDSPublicationsResource GetPublicationsForQuery([FromQuery] PagingRequestResource paging, [FromQuery] string query, [FromQuery] string title, [FromQuery] string author)
         {
             var baseUrl = string.Format("{0}://{1}", Request.Scheme, Request.Host);
@@ -107,30 +122,8 @@ namespace Readarr.Api.V1.OPDS
             return publications;
         }
 
-        // /opds/publications
-        [HttpGet("publications")]
-        public OPDSPublicationsResource GetOPDSPublications([FromQuery] PagingRequestResource paging)
-        {
-            var baseUrl = string.Format("{0}://{1}", Request.Scheme, Request.Host);
-
-            var pagingResource = new PagingResource<OPDSPublicationResource>(paging);
-            var pagingSpec = new PagingSpec<Book>
-            {
-                Page = pagingResource.Page,
-                PageSize = pagingResource.PageSize,
-                SortKey = pagingResource.SortKey,
-                SortDirection = pagingResource.SortDirection
-            };
-            pagingSpec = _bookService.BooksWithFiles(pagingSpec);
-
-            var publications = OPDSResourceMapper.ToOPDSPublicationsResource(pagingSpec.Page, pagingSpec.PageSize, pagingSpec.TotalRecords);
-            publications.Publications = MapToResource(baseUrl, pagingSpec.Records);
-
-            return publications;
-        }
-
         // /opds/publications/{int:id}
-        [HttpGet("publications/{id:int}")]
+        [HttpGet("{id:int}")]
         public OPDSPublicationResource GetOPDSPublication(int id)
         {
             var baseUrl = string.Format("{0}://{1}", Request.Scheme, Request.Host);

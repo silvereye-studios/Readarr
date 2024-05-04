@@ -3,6 +3,9 @@
     <TargetFrameworks>net6.0</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="SixLabors.ImageSharp" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\NzbDrone.Test.Common\Readarr.Test.Common.csproj" />
     <ProjectReference Include="..\NzbDrone.Update\Readarr.Update.csproj" />
   </ItemGroup>

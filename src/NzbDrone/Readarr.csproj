@@ -8,6 +8,7 @@
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="SixLabors.ImageSharp" />
     <PackageReference Include="System.Resources.Extensions" />
   </ItemGroup>
   <ItemGroup>

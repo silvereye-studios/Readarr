@@ -5,6 +5,7 @@
   <ItemGroup>
     <PackageReference Include="Selenium.Support" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" />
+    <PackageReference Include="SixLabors.ImageSharp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NzbDrone.Test.Common\Readarr.Test.Common.csproj" />

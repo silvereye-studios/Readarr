@@ -13,6 +13,7 @@
     <PackageReference Include="NLog" />
     <PackageReference Include="Sentry" />
     <PackageReference Include="SharpZipLib" />
+    <PackageReference Include="SixLabors.ImageSharp" />
     <PackageReference Include="System.IO.Abstractions" />
     <PackageReference Include="System.Text.Json" />
     <PackageReference Include="System.ValueTuple" />

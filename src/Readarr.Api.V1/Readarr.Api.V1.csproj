@@ -9,6 +9,7 @@
     <ProjectReference Include="..\NzbDrone.SignalR\Readarr.SignalR.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="SixLabors.ImageSharp" />
     <PackageReference Include="System.Reflection.TypeExtensions" />
     <PackageReference Include="FluentValidation" />
     <PackageReference Include="Ical.Net" />

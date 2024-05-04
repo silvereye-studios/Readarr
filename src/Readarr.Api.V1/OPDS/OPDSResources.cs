@@ -94,21 +94,12 @@ namespace Readarr.Api.V1.OPDS
             var nav = new List<OPDSLinkResource>();
             var search = new OPDSLinkResource
             {
-                Href = "publications/search{?query,title,author}",
+                Href = "search{?query,title,author}",
                 Rel = "search",
                 Title = "Readarr Publication Search",
                 Type = "application/opds+json"
             };
             nav.Add(search);
-
-            var pubs = new OPDSLinkResource
-            {
-                Href = "publications",
-                Rel = "subsection",
-                Title = "Available Publications",
-                Type = "application/opds+json"
-            };
-            nav.Add(pubs);
 
             var meta = new OPDSCatalogMetadataResource
             {

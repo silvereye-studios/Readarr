@@ -6,4 +6,7 @@
     <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
     <PackageReference Include="System.Security.Principal.Windows" />
   </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="SixLabors.ImageSharp" />
+    </ItemGroup>
 </Project>

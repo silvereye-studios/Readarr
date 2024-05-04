@@ -5,6 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NLog" />
+    <PackageReference Include="SixLabors.ImageSharp" />
     <PackageReference Include="System.IO.FileSystem.AccessControl" />
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NLog" />
+    <PackageReference Include="SixLabors.ImageSharp" />
     <PackageReference Include="System.IO.Abstractions" />
     <PackageReference Include="Mono.Posix.NETStandard" />
   </ItemGroup>
