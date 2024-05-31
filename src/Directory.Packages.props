@@ -2,7 +2,7 @@
 <Project>
   <ItemGroup>
     <PackageVersion Include="AutoFixture" Version="4.17.0" />
-    <PackageVersion Include="coverlet.collector" Version="3.0.4-preview.27.ge7cb7c3b40" PrivateAssets="all" />
+    <PackageVersion Include="coverlet.collector" Version="6.0.2" PrivateAssets="all" />
     <PackageVersion Include="Dapper" Version="2.0.151" />
     <PackageVersion Include="DryIoc.dll" Version="5.4.3" />
     <PackageVersion Include="DryIoc.Microsoft.DependencyInjection" Version="6.2.0" />
@@ -33,7 +33,7 @@
     <PackageVersion Include="NLog.Extensions.Logging" Version="5.2.3" />
     <PackageVersion Include="NLog" Version="5.1.4" />
     <PackageVersion Include="NLog.Targets.Syslog" Version="7.0.0" />
-    <PackageVersion Include="Npgsql" Version="7.0.6" />
+    <PackageVersion Include="Npgsql" Version="8.0.3" />
     <PackageVersion Include="NUnit3TestAdapter" Version="4.2.1" />
     <PackageVersion Include="NUnit" Version="3.14.0" />
     <PackageVersion Include="NunitXml.TestLogger" Version="3.0.117" />
@@ -60,7 +60,7 @@
     <PackageVersion Include="System.Security.Principal.Windows" Version="5.0.0" />
     <PackageVersion Include="System.ServiceProcess.ServiceController" Version="6.0.1" />
     <PackageVersion Include="System.Text.Encoding.CodePages" Version="6.0.0" />
-    <PackageVersion Include="System.Text.Json" Version="6.0.9" />
+    <PackageVersion Include="System.Text.Json" Version="8.0.3" />
     <PackageVersion Include="System.ValueTuple" Version="4.5.0" />
     <PackageVersion Include="TagLibSharp-Lidarr" Version="2.2.0.19" />
   </ItemGroup>
