@@ -164,15 +164,16 @@ namespace Readarr.Api.V1.Books
         }
 
         [HttpPost("{id:int}/upload")]
+        [RequestFormLimits(MultipartBodyLengthLimit = 500000000)]
         public async Task<IActionResult> PutBookFileAsync(int id, IFormFile file)
         {
             if (file == null || file.Length == 0)
             {
                 throw new NzbDroneClientException(HttpStatusCode.UnprocessableEntity, "no file selected for upload");
             }
-            else if (file.Length > 2.5e+7)
+            else if (file.Length > 250000000)
             {
-                throw new NzbDroneClientException(HttpStatusCode.UnprocessableEntity, "file is too large for upload. max file size is 25 MB.");
+                throw new NzbDroneClientException(HttpStatusCode.RequestEntityTooLarge, "file is too large for upload. max file size is 200 MB.");
             }
 
             var contentType = file.ContentType;
@@ -206,13 +207,13 @@ namespace Readarr.Api.V1.Books
             {
                 //delete the directory after manual import
                 _diskProvider.DeleteFolder(directory, true);
-                throw new NzbDroneClientException(HttpStatusCode.UnprocessableEntity, "import failed.");
+                throw new NzbDroneClientException(HttpStatusCode.FailedDependency, "import failed.");
             }
             else if (!list.First().Rejections.Empty())
             {
                 //delete the directory after manual import
                 _diskProvider.DeleteFolder(directory, true);
-                throw new NzbDroneClientException(HttpStatusCode.UnprocessableEntity, "import failed.");
+                throw new NzbDroneClientException(HttpStatusCode.FailedDependency, "import failed.");
             }
 
             //delete the directory after manual import
