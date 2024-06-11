@@ -10,10 +10,11 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SixLabors.ImageSharp" />
-    <PackageReference Include="System.Reflection.TypeExtensions" />
     <PackageReference Include="FluentValidation" />
     <PackageReference Include="Ical.Net" />
     <PackageReference Include="NLog" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" />
     <PackageReference Include="System.IO.Abstractions" />
+    <PackageReference Include="System.Reflection.TypeExtensions" />
   </ItemGroup>
 </Project>
