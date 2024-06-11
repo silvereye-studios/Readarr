@@ -4,10 +4,17 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NBuilder" />
+    <PackageReference Include="SixLabors.ImageSharp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NzbDrone.Core\Readarr.Core.csproj" />
     <ProjectReference Include="..\NzbDrone.Test.Common\Readarr.Test.Common.csproj" />
     <ProjectReference Include="..\Readarr.Http\Readarr.Http.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Update="coverlet.collector">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 </Project>

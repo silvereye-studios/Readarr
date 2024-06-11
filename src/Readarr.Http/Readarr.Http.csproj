@@ -6,6 +6,8 @@
     <PackageReference Include="FluentValidation" />
     <PackageReference Include="ImpromptuInterface" />
     <PackageReference Include="NLog" />
+    <PackageReference Include="SixLabors.ImageSharp" />
+    <PackageReference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NzbDrone.Core\Readarr.Core.csproj" />

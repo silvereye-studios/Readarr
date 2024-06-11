@@ -9,6 +9,9 @@
     <AssemblyName>Readarr</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="SixLabors.ImageSharp" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\NzbDrone.Host\Readarr.Host.csproj" />
   </ItemGroup>
 </Project>
