@@ -3,8 +3,17 @@
     <TargetFrameworks>net6.0</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="SixLabors.ImageSharp" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\NzbDrone.Common.Test\Readarr.Common.Test.csproj" />
     <ProjectReference Include="..\NzbDrone.Test.Common\Readarr.Test.Common.csproj" />
     <ProjectReference Include="..\NzbDrone.Windows\Readarr.Windows.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Update="coverlet.collector">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 </Project>

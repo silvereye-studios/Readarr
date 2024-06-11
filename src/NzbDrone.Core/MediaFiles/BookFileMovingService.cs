@@ -74,6 +74,14 @@ namespace NzbDrone.Core.MediaFiles
             var newFileName = _buildFileNames.BuildBookFileName(localBook.Author, localBook.Edition, bookFile);
             var filePath = _buildFileNames.BuildBookFilePath(localBook.Author, localBook.Edition, newFileName, Path.GetExtension(localBook.Path));
 
+            //Ensure the filePath length is less than 260. Otherwise truncate the file name
+            if (filePath.Length > 260)
+            {
+                var truncateLength = filePath.Length - newFileName.Length;
+                newFileName = newFileName.Substring(0, truncateLength);
+                filePath = _buildFileNames.BuildBookFilePath(localBook.Author, localBook.Edition, newFileName, Path.GetExtension(localBook.Path));
+            }
+
             EnsureTrackFolder(bookFile, localBook, filePath);
 
             _logger.Debug("Moving book file: {0} to {1}", bookFile.Path, filePath);
